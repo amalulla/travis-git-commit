@@ -1,30 +1,25 @@
 language: python
-
 python:
-  - "2.7"
+- '2.7'
 before_install:
- - git config --global user.email "$USER_EMAIL"
- - git config --global user.name "$USER_NAME"
- - git config --global push.default simple
- - git checkout $TRAVIS_BRANCH
-
+- git config --global user.email "$USER_EMAIL"
+- git config --global user.name "$USER_NAME"
+- git config --global push.default simple
+- git checkout $TRAVIS_BRANCH
 script:
-  - python hello.py
-
+- python hello.py
 after_success:
-  - echo "//this is a file to commit" >> new.txt
-  - git config credential.helper "store --file=.git/credentials" 
-  - echo "https://${GH_TOKEN}:@github.com" > .git/credentials
-  - git add -A .
-  - git commit -m "$COMMIT_IGNORE_BUILD" 
-  - git remote set-url origin https://github.com/$TRAVIS_REPO_SLUG.git 
-  - git push
-
+- echo "//this is a file to commit" >> new.txt
+- git config credential.helper "store --file=.git/credentials"
+- echo "https://${GH_TOKEN}:@github.com" > .git/credentials
+- git add -A .
+- git commit -m "$COMMIT_IGNORE_BUILD"
+- git remote set-url origin https://github.com/$TRAVIS_REPO_SLUG.git
+- git push
 env:
   global:
-    - USER_EMAIL=mariadeanton@gmail.com
-    - USER_NAME="MariadeAnton"
-    - TRAVIS_REPO_SLUG=MariadeAnton/travis-git-commit
-    - COMMIT_IGNORE_BUILD="autocommiting new file [ci skip]"
-    # GH_TOKEN: Github token > travis encrypt GH_TOKEN=XXXXXX --add
-  
+  - USER_EMAIL=mariadeanton@gmail.com
+  - USER_NAME="MariadeAnton"
+  - TRAVIS_REPO_SLUG=MariadeAnton/travis-git-commit
+  - COMMIT_IGNORE_BUILD="autocommiting new file [ci skip]"
+  - secure: u2ax/iqnweZFDkN9IBYkaMwEJIcmJnGKwFUPdm/w2N8x7kROA4S5dkpH/TlhQOhCgQXEO3TujS0o2xM3dDRG+a+UViuWiiSKTRI8Tnbo20dm+Pko3KV+Lq++TiU7mjZc8qZnUeLj0XzeMGkK7QCUYMjlNHDwpQUWtLcS/zX49d1q+PJ2W3KxdRhzzhnJq2gRLutvPgRdHkjcm0u8h+6lkvSIDVoU3ySGhym5xHaALpefbec0/L9fsevbUCzuRukOeaELp45vIktBnGpuDaGDMxaf4TqEaGN3x6x/GhdW1tpurOzjIBRzsaHg1cv+5qmbfMhRCFRIepjSUcJ32K11vMMk80A4nawWRo2SVmeVT7ZjLqBvKHG+3gNPqnYTgz7QT9LOKO631tGh4FMajPXF87ALmPNZSDBQxRnt7eQ50mOQ482fgZCBI8/fIYyIRjWmUPrmtsTocFYEq1ODUAoffGLodv47io6YOjegQnVpSkC2pSbkl0zm1/usiqBzUzCqTYcPGi5dcub6HhUY7YLwcodbr5vxTeHaokS6fE0GjBHCRY+QGUxHUrSJzLdgCRccQyTAXxeqFmcvFYA2iX/FNC6kuTT6eQ9DSTxqJ/CvWsKX1Yxr9n22u5JhJYLDDCFe/tWkKIBmtep9Z0VQW/YLIYbtkX6oJedSC7KNIYmfNcc=
